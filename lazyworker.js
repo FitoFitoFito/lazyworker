@@ -3,8 +3,8 @@
  */
 const lazyworker = {
 
-  /** The wait() function will return a promise which will be fullfiled
-   *  once the codition evaluates to a truthy value.
+  /** The wait() method will return a promise which will be fulfilled
+   *  once the condition evaluates to a truthy value.
    *
    *  wait() will have 4 parameters:
    *  - condition: It's a Function.
@@ -12,7 +12,7 @@ const lazyworker = {
    *  - timeout: It is the max elapsed time to wait for the promise to resolve.
    *  - evalTime: It is the time between evaluations.
    */
-  wait (condition, conditionArg=null, timeout=3000, evalTime=500){
+  wait (condition, conditionArg=null, timeout=10000, evalTime=500){
     return new Promise((res, rej)=>{
       // Let's define the starting time.
       const startTime = Date.now();
@@ -22,7 +22,7 @@ const lazyworker = {
   
         // Elapsed time of runCondition().
         const elapsedTime = Date.now() - startTime;
-  
+
         // If the condition evaluated is not a falsy value then resolve with whatever the condition returns.
         if(conditionArg !== null && condition(conditionArg)){
           res(condition(conditionArg));
@@ -41,12 +41,12 @@ const lazyworker = {
     });
   },
 
-  /**The getElement() function will (as the name suggests) capture and return
-   * an element from the DOM, therefore we will pass any css selector as an argument.
+  /** The getElement() method will capture and return an element from the 
+   *  DOM, therefore, we will pass any css selector as an argument.
    *
-   * cssSelector: string
+   *  cssSelector: string
    *
-   * https://developer.mozilla.org/es/docs/Web/CSS/CSS_Selectors
+   *  https://developer.mozilla.org/es/docs/Web/CSS/CSS_Selectors
    */
   getElement (cssSelector){
     const el = document.querySelector(cssSelector);
@@ -55,8 +55,9 @@ const lazyworker = {
     };
   },
 
-  /**Similar to getElement() function, the getAllElements() function will (as the name suggests) capture and return
-   * all element from the DOM (it will return an array), therefore we will pass any css selector as an argument.
+  /** Similar to getElement() method, the getAllElements() method will capture 
+   *  and return all element from the DOM (it will return an array), therefore,
+   *  we will pass any css selector as an argument.
    *
    * cssSelector: string
    *
@@ -69,10 +70,10 @@ const lazyworker = {
     };
   },
 
-  /**The clickIt() function will simulate a mouse click.
+  /** The clickIt() method will simulate a mouse click.
    *
-   * First, it will move the mouse to the center of the argument, an "HTMLelement".
-   * Second, it will permform a left mouse click.
+   *  First, it will move the mouse to the center of the argument, an "HTMLelement".
+   *  Second, it will permform a left mouse click.
    */
   clickIt (HTMLelement){
     return new Promise((res, rej)=>{
@@ -112,12 +113,10 @@ const lazyworker = {
     });
   },
 
-  /** The sleep(seconds) function will simulate a stop in the code */
+  /** The sleep(seconds) method will simulate a stop in the code */
   sleep (time){
     return new Promise(res=>{
       setTimeout(()=>{res()}, time*1000);
     });
   }
 };
-
-lazyworker.sl
